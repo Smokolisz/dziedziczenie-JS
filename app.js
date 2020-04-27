@@ -8,15 +8,20 @@ class Osoba {
         this._nazwisko;
     }
 
-    wprowadz() {
-        this._imie = gID("uczen_imie").value;
-        this._nazwisko = gID("uczen_nazwisko").value;
+    wprowadz(w) {
+        if(w == 'u') {
+            this._imie = gID("uczen_imie").value;
+            this._nazwisko = gID("uczen_nazwisko").value;
+        } else if(w == 'n') {
+            this._imie = gID("nauczyciel_imie").value;
+            this._nazwisko = gID("nauczyciel_nazwisko").value;
+        }
     }
 
     wypisz(w) {
         if(w == 'u') {
             gID("lista_uczniowie").innerHTML += `<div>${this._imie} ${this._nazwisko}</div>`;
-        } else if(w=='n') {
+        } else if(w == 'n') {
             gID("lista_nauczyciele").innerHTML += `<div>${this._imie} ${this._nazwisko}</div>`;
         }
     }
@@ -30,15 +35,13 @@ class Uczen extends Osoba {
     }
 
     wprowadz_ucznia() {
-        this.wprowadz();
+        this.wprowadz('u');
         this._klasa = gID("uczen_klasa").value;
         this._numerDziennika = gID("uczen_numer").value;
     }
 
     wypisz_ucznia() {
-        console.log("test");
-        this.wypisz("u");
-        console.log("test2");
+        this.wypisz('u');
         gID("lista_uczniowie").innerHTML += `<div>Klasa ${this._klasa}, numer ${this._numerDziennika}</div>`;
     }
 }
@@ -51,13 +54,13 @@ class Nauczyciel extends Osoba {
     }
 
     wprowadz_nauczyciela() {
-        this.wprowadz();
+        this.wprowadz('n');
         this._przedmiot = gID("nauczyciel_przedmiot").value;
         this._wychowawca = gID("nauczyciel_klasa").value;
     }
 
     wypisz_nauczyciela() {
-        this.wypisz("n");
+        this.wypisz('n');
         gID("lista_nauczyciele").innerHTML += `<div>${this._przedmiot}, Wychowawca ${this._wychowawca}</div>`;
     }
 }
@@ -67,7 +70,6 @@ let uczniowie = [];
 gID("uczen_dodaj").addEventListener("click", () => {
     let u = new Uczen();
     u.wprowadz_ucznia();
-    console.log(u);
     uczniowie.push(u);
 
     refresh();
