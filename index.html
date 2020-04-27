@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <title>Dziedziczenie JS</title>
+
+        <style>
+        .container {
+            width:800px;
+            border:1px solid #dfdfdf;
+            position:absolute;
+            top:50%; left:50%;
+            transform: translate(-50%, -50%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 80px 1fr;
+            gap: 1px 1px;
+            grid-template-areas: "title title" "tool data";
+        }
+
+        .rectangle {
+            padding:50px;
+            border-right:1px solid #dfdfdf;
+        }
+
+        .rectangle:last-child {
+            border:0;
+        }
+
+        input, button {
+            background-color:#fff;
+            border:2px solid #000;
+            display:block;
+            width:100%;
+            padding:5px;
+            margin-bottom:10px;
+        }
+
+        input:hover, button:hover {
+            border:2px solid rgb(48, 106, 182);
+        }
+
+        button:hover {
+            cursor:pointer;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .tool { grid-area: tool; }
+
+        .data { grid-area: data; }
+
+        .title { 
+            grid-area: title; 
+            text-align: center;
+            border-bottom:1px solid #dfdfdf;
+        }
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="title">
+                <h1>Dziedziczenie JavaScript</h1>
+            </div>
+            <div class="rectangle tool">
+                <h2>Dodaj ucznia</h2>
+
+                <input type="text" id="uczen_imie" placeholder="Imie">
+                <input type="text" id="uczen_nazwisko" placeholder="Nazwisko">
+                <input type="text" id="uczen_klasa" placeholder="Klasa">
+                <input type="number" id="uczen_numer" placeholder="Numer w dzienniku">
+                <button id="uczen_dodaj">Dodaj ucznia</button>
+
+
+                <h2>Dodaj nauczyciela</h2>
+
+                <input type="text" id="nauczyciel_imie" placeholder="Imie">
+                <input type="text" id="nauczyciel_nazwisko" placeholder="Nazwisko">
+                <input type="text" id="nauczyciel_klasa" placeholder="Klasa">
+                <input type="text" id="nauczyciel_przedmiot" placeholder="Przedmiot">
+                <button id="nauczyciel_dodaj">Dodaj nauczyciela</button>
+            </div>
+            <div class="rectangle data">
+                <h2>Uczniowie</h2>
+                <div id="lista_uczniowie"></div>
+
+                <h2>Nauczyciele</h2>
+                <div id="lista_nauczyciele"></div>
+            </div>
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>
